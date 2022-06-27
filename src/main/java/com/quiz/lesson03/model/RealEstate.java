@@ -8,6 +8,7 @@ public class RealEstate {
 	private String address;
 	private String type;
 	private int price;
+	private int area;
 	private int rentPrice;
 	private Date createdAt;
 	private Date updatedAt;
@@ -37,11 +38,17 @@ public class RealEstate {
 	public void setType(String type) {
 		this.type = type;
 	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
 	public int getPrice() {
 		return price;
 	}
-	public void setPrice(int price) {
-		this.price = price;
+	public void setArea(int area) {
+		this.area = area;
+	}
+	public int getArea() {
+		return area;
 	}
 	public int getRentPrice() {
 		return rentPrice;
