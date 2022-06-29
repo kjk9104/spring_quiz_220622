@@ -8,4 +8,8 @@ import com.quiz.lesson04.model.Seller;
 public interface SellerDAO {
 	
 	public int insertSeller(Seller seller);
+	
+	public Seller selectSeller();
+	
+	public Seller selectSellerById(int id);
 }

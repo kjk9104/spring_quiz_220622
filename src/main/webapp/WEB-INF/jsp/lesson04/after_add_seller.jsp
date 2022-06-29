@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,22 +23,8 @@
 	crossorigin="anonymous"></script>
 </head>
 <body>
-	<div class=container>
-		<h1>판매자 추가</h1>
-		<form method=get action="/lesson04/add_seller">
-			<div class="form-group">
-				<label for="name">닉네임</label> <input type="text" id="nickname"
-					name="name" class="form-control col-3" placeholder="닉네임을 입력해주세요">
-			</div>
-			<div class="form-group">
-				<label for="name">프로필 사진 url</label> <input type="text" id="profileImageUrl"
-					name="name" class="form-control col-3" placeholder="주소를 입력해 주세요">
-			</div>
-			<div class="form-group">
-				<label for="name">온도</label> <input type="text" id="temperature"
-					name="name" class="form-control col-3" placeholder="온도를 입력해 주세요">
-			</div>
-		</form>
+	<div class ="container">
+		<h1 class="display-1">입력성공!!</h1>
 	</div>
 </body>
 </html>
