@@ -33,36 +33,18 @@
 
 	<h1>4.JSTL core if</h1>
 <%-- 	<c:set var="average">${(number1+number2)/2}</c:set> --%>
-	<c:set var="average" var="${(number1+number2)/2}"/>
-
-	<!--안되는 코드-->
-
-	<%-- 	<c:if test="${number3/2 >= 10}"> --%>
-	<%-- 		<h1>${number3}</h1> --%>
-	<%-- 	</c:if> --%>
-
-<%-- 	<c:if test="${(number1+number2)/2 >= 10}"> --%>
-<%-- 		<h1>${average}h1</h1> --%>
-<%-- 	</c:if> --%>
-	
-	<c:if test="${average >= 10}">
-		<h1>${average}h1</h1>
-	</c:if>
-
-	<%-- 	<c:if test="${(number1+number2)/2 <= 10"> --%>
-	<%-- 		<h3>${number3} h3</h3> --%>
-	<%-- 	</c:if> --%>
+	<c:set var="average" value="${(number1+number2)/2}"/>
 
 	<!--되는 코드  -->
 
-	<%-- 	<c:choose> --%>
-	<%-- 		<c:when test="${(number1+number2)/2 >= 10}"> --%>
-	<%-- 			<h1>${number3} h1</h1> --%>
-	<%-- 		</c:when> --%>
-	<%-- 		<c:otherwise> --%>
-	<%-- 			<h3>${number3} h3</h3>	 --%>
-	<%-- 		</c:otherwise> --%>
-	<%-- 	</c:choose> --%>
+		<c:choose>
+			<c:when test="${(number1+number2)/2 >= 10}">
+				<h1>${average} h1</h1>
+			</c:when>
+			<c:otherwise>
+				<h3>${average} h3</h3>	
+			</c:otherwise>
+		</c:choose>
 
 	<h1>5.core if</h1>
 	<c:if test="${(number1*number2)>100}">
