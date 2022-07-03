@@ -44,6 +44,25 @@
 				</tbody>
 			</c:forEach>
 		</table>
+		
+		<table class="table text-center">
+		
+			<thead>
+				<tr>
+					<th>순위</th>
+					<th>제목</th>
+				</tr>
+			</thead>
+			<c:forEach var="music_ranking" items="${musicRanking}"
+				varStatus="status">
+				<tbody>
+					<tr>
+						<td>${status.count}</td>
+						<td>${musicRanking[status.index]}</td>
+					</tr>
+				</tbody>
+			</c:forEach>
+		</table>
 	</div>
 </body>
 </html>
