@@ -1,8 +1,12 @@
 package com.quiz.lesson05.dao;
 
-import com.quiz.lesson05.model.Weatherhistory;
+import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
+import com.quiz.lesson05.model.Weatherhistory;
+@Repository
 public interface WeatherhistoryDAO {
 
-	public Weatherhistory selectWheterhistory();
+	public List<Weatherhistory> selectWheterhistory();
 }

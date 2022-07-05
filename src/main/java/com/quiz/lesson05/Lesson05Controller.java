@@ -12,11 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.quiz.lesson05.bo.WeatherhistoryBO;
 import com.quiz.lesson05.model.Member;
+import com.quiz.lesson05.model.Weatherhistory;
 @RequestMapping("/lesson05")
 @Controller
 public class Lesson05Controller {
 	
-	@Autowired
+	@Autowired(required=false)
 	private WeatherhistoryBO weatherhistoryBO;
 	
 	// http://localhost/lesson05/quiz01
@@ -183,8 +184,11 @@ public class Lesson05Controller {
 	
 	// http://localhost/lesson05/quiz05/1
 	@RequestMapping("/quiz05/1")
-	public String quiz05_1() {
-		weatherhistoryBO.getWeatherhistory();
+	public String quiz05_1(Model model) {
+		List<Weatherhistory> result = new ArrayList<>();
+		result = weatherhistoryBO.getWeatherhistory();
+		
+		model.addAttribute("result",result);
 		
 		return"/lesson05/quiz05_1View";
 	}
