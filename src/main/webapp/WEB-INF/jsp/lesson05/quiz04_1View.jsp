@@ -43,26 +43,25 @@
 				<tbody>
 					<tr>
 						<td>${status.count}</td>
-						<td>${member.getName()}</td>
+						<td>${member.name}</td>
 						<td>
 						<c:choose>
-								<c:when
-									test="${fn:startsWith(member.getPhoneNumber(), '010')}">
-						${member.getPhoneNumber()}
+								<c:when test="${fn:startsWith(member.phoneNumber, '010')}">
+								${member.phoneNumber}
 						</c:when>
 							<c:otherwise>
 									유효하지 않는 번호 입니다.
 							</c:otherwise>
 						</c:choose>
 						</td>
-						<td>${fn:replace(member.getNationality(),'시대','-')}</td>
-						<td><b>${fn:split(member.getEmail(),'@')[0]} </b>@${fn:split(member.getEmail(),'@')[1]}</td>
+						<td>${fn:replace(member.nationality,'시대','-')}</td>
+						<td><b>${fn:split(member.email,'@')[0]} </b>@${fn:split(member.email,'@')[1]}</td>
 						<td>
-								<c:if test="${fn:length(member.getIntroduce()) > 15}">
-										${fn:substring(member.getIntroduce(),0,15)}...
+								<c:if test="${fn:length(member.introduce) > 15}">
+										${fn:substring(member.introduce,0,15)}...
 								</c:if>
-								<c:if test="${fn:length(member.getIntroduce()) <= 15}">
-										${member.getIntroduce()}
+								<c:if test="${fn:length(member.introduce) <= 15}">
+										${member.introduce}
 								</c:if>
 						</td>
 					</tr>

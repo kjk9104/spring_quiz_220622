@@ -16,4 +16,8 @@ public class WeatherhistoryBO {
 	public List<Weatherhistory> getWeatherhistory() {
 		return weatherhistoryDAO.selectWheterhistory();  
 	}
+	
+	public Weatherhistory addWeatherhistory() {
+		return weatherhistoryDAO.insertWheatherhistory();
+	}
 }

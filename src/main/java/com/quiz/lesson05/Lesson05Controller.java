@@ -185,11 +185,19 @@ public class Lesson05Controller {
 	// http://localhost/lesson05/quiz05/1
 	@RequestMapping("/quiz05/1")
 	public String quiz05_1(Model model) {
-		List<Weatherhistory> result = new ArrayList<>();
-		result = weatherhistoryBO.getWeatherhistory();
+		List<Weatherhistory> WeatherList = new ArrayList<>();
+		WeatherList = weatherhistoryBO.getWeatherhistory();
 		
-		model.addAttribute("result",result);
+		model.addAttribute("WeatherList",WeatherList);
 		
 		return"/lesson05/quiz05_1View";
+	}
+	
+	// http://localhost/lesson05/quiz05/2
+	@RequestMapping("/quiz05/2")
+	public String quiz05_2(Model model) {
+		
+		
+		return"/lesson05/quiz05_2View";
 	}
 }
