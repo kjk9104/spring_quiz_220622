@@ -36,23 +36,23 @@
 					</ul>
 	 			</nav>
 	 			<!-- section 영역  -->
-	 			<form method="post" action="/lesson05/quiz05/add_weather">
 		 			<section class="right">
 		 			<!-- 날짜 날씨 미세먼지 입력칸 -->
 			 			<div class="mt-4 mx-4 ">
 			 				<h1 class="font-weight-bold">날씨 입력</h1>
+			 				<form method="post" action="/lesson05/quiz05/add_weather">
 			 					<div class="mt-5 d-flex form-control space-ecenly align-items-center">
 			 						 <span>날짜</span>
-		                			<input type="text" class="form-control col-3 mx-3" id="startDate">
+		                			<input type="text" class="form-control col-3 mx-3" id="startDate" name="date">
 			 						 <span>날씨</span>
-		                			<select class="form-control selectpiker col-2 mx-3">
+		                			<select class="form-control selectpiker col-2 mx-3" name="weather">
 		                				<option>맑음</option>
 									    <option>비</option>
 									    <option>구름</option>
 									    <option>구름 조금</option>
 		                			</select>
 		                			<span>미세먼지</span>
-		                			<select class="form-control selectpiker col-2  mx-3">
+		                			<select class="form-control selectpiker col-2  mx-3" name="microDust">
 		                				<option>좋음</option>
 									    <option>보통</option>
 									    <option>나쁨</option>
@@ -64,17 +64,17 @@
 				 				<div class="mt-5 d-flex form-control  justify-content-around align-items-center">
 				 					 <span>기온</span>
 										  <div class="input-group-append">
-					 					  <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+					 					  <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" name="temperatures">
 										    <span class="input-group-text">℃</span>
 										  </div>
 				 					 <span>강수량</span>
 										  <div class="input-group-append">
-					 					  <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+					 					  <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" name="precipitation">
 										    <span class="input-group-text">mm</span>
 										  </div>
 				 					 <span>풍속</span>
 										  <div class="input-group-append">
-					 					  <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+					 					  <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" name="windSpeed">
 										    <span class="input-group-text">km/h</span>
 										  </div>
 				 				</div>
@@ -82,9 +82,10 @@
 				 				<div class="d-flex justify-content-end">
 				 					 <button type="submit" id="saveBtn"class="btn btn-success mt-3">저장</button>
 				 				</div>
+				 				</form>
 			 				</div>
 		 				</section>
-	 				</form>
+	 				
 	 	</div>	
  		<footer class="d-flex align-items-center">
 			<div class="ml-4">
@@ -100,7 +101,9 @@
  		
  	</div>
 </body>
+
  <script>
+ //ready 함수 : DOM tree가 모두 구성된 후 부려지는 함수
             $(document).ready(function() {
                 // 모든 데이터피커에 적용
                 $.datepicker.setDefaults({

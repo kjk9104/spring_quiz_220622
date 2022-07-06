@@ -17,10 +17,10 @@
  		FROM
  			`weatherhistory`
  	</select>
- 	<insert id="WeatherhistoryDAO" parameterType="com.quiz.lesson05.model.Weatherhistory">
+ 	<insert id="insertWheatherhistory" parameterType="map">
  		INSERT INTO `weatherhistory`
  		(
-			,`date`
+			`date`
 			,`weather`
 			,`temperatures`
 			,`precipitation`

@@ -6,6 +6,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -208,21 +212,21 @@ public class Lesson05Controller {
 	public String quiz05_addWeather(
 			@RequestParam("date") String date,
 			@RequestParam("weather")String weather,
-			@RequestParam("temperatures")String temperatures,
-			@RequestParam("precipitation")String precipitation,
+			@RequestParam("temperatures")double temperatures,
+			@RequestParam("precipitation")double precipitation,
 			@RequestParam("microDust")String microDust,
-			@RequestParam("windSpeed")String windSpeed
+			@RequestParam("windSpeed")double windSpeed
+			//,HttpServletResponse response
 			) {
-			Weatherhistory wetherhistory= new Weatherhistory();
-			wetherhistory.setDate(date);
-			wetherhistory.setWeather(weather);
-			wetherhistory.setTemperatures(temperatures);
-			wetherhistory.setPrecipitation(precipitation);
-			wetherhistory.setMicroDust(microDust);
-			wetherhistory.setWindSpeed(windSpeed);
+			weatherhistoryBO.addWeatherhistory(
+					date,
+					weather,
+					temperatures,
+					precipitation,
+					microDust,
+					windSpeed);
 			
-			Weatherhistory row = weatherhistoryBO.addWeatherhistory(wetherhistory);
-			return "redirect:/lesson05/quiz05_1View";
+			return "redirect:/lesson05/quiz05/1";
 			
 	}
 

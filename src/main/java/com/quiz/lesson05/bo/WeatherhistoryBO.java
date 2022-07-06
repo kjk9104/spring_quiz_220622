@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.quiz.lesson05.dao.WeatherhistoryDAO;
 import com.quiz.lesson05.model.Weatherhistory;
@@ -17,7 +18,21 @@ public class WeatherhistoryBO {
 		return weatherhistoryDAO.selectWheterhistory();  
 	}
 	
-	public Weatherhistory addWeatherhistory(Weatherhistory weatherhistory) {
-		return weatherhistoryDAO.insertWheatherhistory(weatherhistory);
+	public void addWeatherhistory(
+			String date, 
+			String weather, 
+			double temperatures, 
+			double precipitation, 
+			String microDust,
+			double windSpeed) {
+		weatherhistoryDAO.insertWheatherhistory(
+				
+				date, 
+				weather, 
+				temperatures,
+				precipitation, 
+				microDust, 
+				windSpeed);
+		
 	}
 }
