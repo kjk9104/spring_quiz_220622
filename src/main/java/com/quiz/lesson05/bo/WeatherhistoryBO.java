@@ -26,7 +26,6 @@ public class WeatherhistoryBO {
 			String microDust,
 			double windSpeed) {
 		weatherhistoryDAO.insertWheatherhistory(
-				
 				date, 
 				weather, 
 				temperatures,
