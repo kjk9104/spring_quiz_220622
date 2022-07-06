@@ -17,7 +17,7 @@ public class WeatherhistoryBO {
 		return weatherhistoryDAO.selectWheterhistory();  
 	}
 	
-	public Weatherhistory addWeatherhistory() {
-		return weatherhistoryDAO.insertWheatherhistory();
+	public Weatherhistory addWeatherhistory(Weatherhistory weatherhistory) {
+		return weatherhistoryDAO.insertWheatherhistory(weatherhistory);
 	}
 }

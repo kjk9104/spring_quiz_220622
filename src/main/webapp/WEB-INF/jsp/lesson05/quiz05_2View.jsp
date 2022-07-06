@@ -15,22 +15,92 @@
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <head>
 <meta charset="UTF-8">
-
+<link rel="stylesheet" type="text/css" href="/css/quiz05_2.css">
 <title>날씨 입력</title>
-  <div class="event-box">
-            <h1 class="font-weight-bold">날씨 입력</h1>
-
-            <div class="d-flex justify-content-between align-items-center">
-                <span>날짜</span>
-                <input type="text" class="form-control col-4" id="startDate">
-
-                <span>날씨</span>
-                <input type="checkbox" class="form-control col-4" id="endDate">
-            </div>
-
-            <button type="button" class="btn btn-info w-100 mt-3">저장</button>
-        </div>
-           <script>
+</head>
+<body>
+ 	<div id="wrap">
+ 		<div class="contents d-flex">
+	 			<!-- nav 영역  -->
+	 			<nav  class="bg-primary">
+	 				<!-- 로고 영역  -->
+					<div class="d-flex justify-content-center pt-4">
+						<h3><a>기상청</a></h3>
+					</div>
+					<!-- 메뉴 영역 ul(nav), li(nav-item), a(nav-link) 세로메뉴(flex-column)-->
+					<ul class="nav flex-column">
+						<li class="nav-item"><a href="#" class="nav-link">날씨</a></li>
+						<li class="nav-item"><a href="#" class="nav-link">날씨 입력</a></li>
+						<li class="nav-item"><a href="#" class="nav-link">테마 날씨</a></li>
+						<li class="nav-item"><a href="#" class="nav-link">관측 기후</a></li>
+					</ul>
+	 			</nav>
+	 			<!-- section 영역  -->
+	 			<form method="post" action="/lesson05/quiz05/add_weather">
+		 			<section class="right">
+		 			<!-- 날짜 날씨 미세먼지 입력칸 -->
+			 			<div class="mt-4 mx-4 ">
+			 				<h1 class="font-weight-bold">날씨 입력</h1>
+			 					<div class="mt-5 d-flex form-control space-ecenly align-items-center">
+			 						 <span>날짜</span>
+		                			<input type="text" class="form-control col-3 mx-3" id="startDate">
+			 						 <span>날씨</span>
+		                			<select class="form-control selectpiker col-2 mx-3">
+		                				<option>맑음</option>
+									    <option>비</option>
+									    <option>구름</option>
+									    <option>구름 조금</option>
+		                			</select>
+		                			<span>미세먼지</span>
+		                			<select class="form-control selectpiker col-2  mx-3">
+		                				<option>좋음</option>
+									    <option>보통</option>
+									    <option>나쁨</option>
+									    <option>매우 나쁨</option>
+		                			</select>
+			 						
+		                		</div>
+			 						<!-- 기온 강수량 풍속 입력칸  -->
+				 				<div class="mt-5 d-flex form-control  justify-content-around align-items-center">
+				 					 <span>기온</span>
+										  <div class="input-group-append">
+					 					  <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+										    <span class="input-group-text">℃</span>
+										  </div>
+				 					 <span>강수량</span>
+										  <div class="input-group-append">
+					 					  <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+										    <span class="input-group-text">mm</span>
+										  </div>
+				 					 <span>풍속</span>
+										  <div class="input-group-append">
+					 					  <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+										    <span class="input-group-text">km/h</span>
+										  </div>
+				 				</div>
+				 				<!--저장 버튼  -->
+				 				<div class="d-flex justify-content-end">
+				 					 <button type="submit" id="saveBtn"class="btn btn-success mt-3">저장</button>
+				 				</div>
+			 				</div>
+		 				</section>
+	 				</form>
+	 	</div>	
+ 		<footer class="d-flex align-items-center">
+			<div class="ml-4">
+				<h1>기상청 이미지</h1>
+			</div>
+			<div class="text-secondary">
+				<small class="text-xecondary">(07062)서울시 동작구 여의대로방로 16길 61<br>
+					Copyright@2020 KMA. All Rights RESERVED.
+				 </small>
+			</div>
+		</footer>
+ 			<!-- footer 영역  -->
+ 		
+ 	</div>
+</body>
+ <script>
             $(document).ready(function() {
                 // 모든 데이터피커에 적용
                 $.datepicker.setDefaults({
@@ -59,9 +129,5 @@
                 });
             });
 
-        </script>
-</head>
-<body>
-
-</body>
+</script>
 </html>

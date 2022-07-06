@@ -60,7 +60,8 @@
 						<tbody>
 							<tr>
 								<td>
-								    <fmt:formatDate value="${weatherhistory.date}" pattern="yyyy년 MM월 dd일"/>
+									<fmt:parseDate var="date" value="${weatherhistory.date}" pattern="yyyy-MM-dd"></fmt:parseDate>
+								    <fmt:formatDate value="${date}" pattern="yyyy년 MM월 dd일"/>
 							    </td>
 								<td>
 									<c:choose>

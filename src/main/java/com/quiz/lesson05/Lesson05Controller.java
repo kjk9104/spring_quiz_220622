@@ -1,6 +1,7 @@
 package com.quiz.lesson05;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,7 +9,10 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.quiz.lesson05.bo.WeatherhistoryBO;
 import com.quiz.lesson05.model.Member;
@@ -194,10 +198,32 @@ public class Lesson05Controller {
 	}
 	
 	// http://localhost/lesson05/quiz05/2
-	@RequestMapping("/quiz05/2")
+	@GetMapping("/quiz05/2")
 	public String quiz05_2(Model model) {
-		
-		
 		return"/lesson05/quiz05_2View";
+		
 	}
+	
+	@PostMapping("/quiz05/add_weather")
+	public String quiz05_addWeather(
+			@RequestParam("date") String date,
+			@RequestParam("weather")String weather,
+			@RequestParam("temperatures")String temperatures,
+			@RequestParam("precipitation")String precipitation,
+			@RequestParam("microDust")String microDust,
+			@RequestParam("windSpeed")String windSpeed
+			) {
+			Weatherhistory wetherhistory= new Weatherhistory();
+			wetherhistory.setDate(date);
+			wetherhistory.setWeather(weather);
+			wetherhistory.setTemperatures(temperatures);
+			wetherhistory.setPrecipitation(precipitation);
+			wetherhistory.setMicroDust(microDust);
+			wetherhistory.setWindSpeed(windSpeed);
+			
+			Weatherhistory row = weatherhistoryBO.addWeatherhistory(wetherhistory);
+			return "redirect:/lesson05/quiz05_1View";
+			
+	}
+
 }

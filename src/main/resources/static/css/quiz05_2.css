@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+#wrap { width: 1200px; height: 500px; }
+
+.contents {width:1200px; height:  500px;}
+
+nav{width:300px; height:500px;}
+.right{width:900px; height:500px;}
+
+.input-group-append{
+	width : 220px;
+}
+footer {whidth: 1200px; height:100px;}
+
+a{ color:white;}
+
