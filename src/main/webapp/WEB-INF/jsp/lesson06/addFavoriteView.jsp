@@ -18,13 +18,13 @@
 		<h1 >즐겨 찾기 추가하기</h1>
 		<div class="form-group">
 				<label for="name">제목</label> <input type="text" id="name"
-					name="name" class="form-control col-10" placeholder="제목을 입력해주세요">
+				class="form-control col-10" placeholder="제목을 입력해주세요">
 		</div>
 		<div class="form-group">
 				<label for="url">주소</label> <input type="text" id="url"
-					name="url" class="form-control col-10" placeholder="주소를 입력해주세요">
+					class="form-control col-10" placeholder="주소를 입력해주세요">
 		</div>
-		<input type="button" id="addBtn" value="저장" class="btn col-10 bg-success text-white">
+		<input type="button" id="addBtn" value="추가" class="btn col-10 btn-success text-white">
 	</div>
 	
 <script>
@@ -32,16 +32,23 @@
 		$('#addBtn').on('click', function(){
 			let name = $('#name').val().trim();
 			let url = $('#url').val().trim();
-			if(name == ""){
+			if(name === ""){
 				alert("제목을 입력해 주세요");
 				return;
 			}
-			if(url == ""){
+			if(url === ""){
 				alert("주소를 입력해주세요");
+				return;
+			}
+			
+			//http 도 아니고 , https도 아닐때 => alert
+			if(url.startsWith("http") === false&&url.startsWith("https")===false){
+				alert("주소 형식이 잘못되었습니다.");
 				return;
 			}
 		
 			$.ajax({
+				//reqeust
 				type:"POST"
 				,url: "/lesson06/add_favorite"
 				,data: {
@@ -49,12 +56,13 @@
 					,"url" : url
 				}
 				
-				, success: function(data){
-					alert(data);
-					location.href="/lesson06/favorite_list" //수행이 끝나고 가고 싶은 주소 입력
-				}
-				, comlete: function(data){
-					alert("완료");
+				//response
+				, success: function(data){ // json str을 object로 변환해줌
+					alert(data.result);
+					if(data.result == "success"){
+						alert("입력 성공했습니다.");
+						location.href="/lesson06/favorite_list"
+					}
 				}
 				, error: function(e){
 					alert("error" + e);
