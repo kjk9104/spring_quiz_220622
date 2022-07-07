@@ -34,6 +34,9 @@
 	
 <script>
 	$(document).ready(function(){
+		
+		let check = 0;
+		
 		$('#addBtn').on('click', function(){
 			let name = $('#name').val().trim();
 			let url = $('#url').val().trim();
@@ -57,6 +60,7 @@
 			}else{
 				alert("서브밋 불가");
 			}
+			
 			$.ajax({
 				//reqeust
 				type:"POST"
@@ -85,17 +89,18 @@
 			$("#warningBox").empty();
 			
 			let url = $("#url").val().trim();
-			console.log(url);
+			
 			
 			if(url == ""){
 				$("#warningBox").append('<span class="text-danger">주소를 입력해주세요</sapn>');
 				return;
 			}
 			
+			
 			$.ajax({
 				//request
 				type : "GET"
-				,url : "/lesson06/is_duplication?url" + url
+				,url : "/lesson06/is_duplication?url=" + url
 						
 										
 				//response

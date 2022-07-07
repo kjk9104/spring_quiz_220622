@@ -69,8 +69,8 @@ public class FavoriteController {
 	}
 	
 	// url 중복 확인
-	@GetMapping("/lesson06/is_duplication")
 	@ResponseBody
+	@GetMapping("/is_duplication")
 	public Map<String, Boolean> isDuplication(
 			@RequestParam("url")String url){
 			
