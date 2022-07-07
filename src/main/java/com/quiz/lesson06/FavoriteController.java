@@ -8,6 +8,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -41,7 +42,7 @@ public class FavoriteController {
 			){
 		// insert db
 		favoriteBO.addFavorite(name, url);
-		
+
 		// 성공 여부를 map에 담는다.
 		//{"result" : "success"}
 		Map<String, Object> result = new HashMap<>();
@@ -54,17 +55,6 @@ public class FavoriteController {
 	}
 	
 	
-	
-//	public String addFavorite(
-//			@RequestParam("name")String name,
-//			@RequestParam("url")String url
-//			) {
-//		
-//		favoriteBO.addFavorite(name, url);
-//		return "입력 성공";
-//		
-//	}
-	
 	// 즐겨찾기 목록 화면
 	// http://localhost/lesson06/favorite_list
 	@RequestMapping("/favorite_list")
@@ -76,5 +66,21 @@ public class FavoriteController {
 		model.addAttribute("favoriteList",favoriteList);
 		
 		return "/lesson06/favoriteList";
+	}
+	
+	// url 중복 확인
+	@GetMapping("/lesson06/is_duplication")
+	@ResponseBody
+	public Map<String, Boolean> isDuplication(
+			@RequestParam("url")String url){
+			
+			// db select  new_user테이블
+			boolean isDuplication = favoriteBO.existFavoriteByUrl(url);
+			
+			Map<String, Boolean> result = new HashMap<>();
+			result.put("is_duplication", isDuplication);
+		
+			return result;
+			
 	}
 }

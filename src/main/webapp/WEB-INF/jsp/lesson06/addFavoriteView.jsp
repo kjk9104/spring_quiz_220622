@@ -24,6 +24,11 @@
 				<label for="url">주소</label> <input type="text" id="url"
 					class="form-control col-10" placeholder="주소를 입력해주세요">
 		</div>
+		<div class="my-20">
+			<button type="button" id="chkBtn" class="btn btn-info text-thite">중복확인</button>
+			<samall id="warningBox"></samall>
+		</div> 
+		
 		<input type="button" id="addBtn" value="추가" class="btn col-10 btn-success text-white">
 	</div>
 	
@@ -47,6 +52,11 @@
 				return;
 			}
 		
+			if($('warningBox').children().length == 0){
+				alert("서브밋 가능");
+			}else{
+				alert("서브밋 불가");
+			}
 			$.ajax({
 				//reqeust
 				type:"POST"
@@ -69,6 +79,41 @@
 				}
 			});
 		});
+		//chkBtn 클릭시 
+		$("#chkBtn").on('click', function(){
+			
+			$("#warningBox").empty();
+			
+			let url = $("#url").val().trim();
+			console.log(url);
+			
+			if(url == ""){
+				$("#warningBox").append('<span class="text-danger">주소를 입력해주세요</sapn>');
+				return;
+			}
+			
+			$.ajax({
+				//request
+				type : "GET"
+				,url : "/lesson06/is_duplication?url" + url
+						
+										
+				//response
+				,success : function(data){
+					console.log(data.is_duplication);
+					if(data.is_duplication){
+						$("#warningBox").append('<span class="text-danger">중복된 주소입니다..</span>');
+					}
+				}
+				,error : function(e, a){
+					alert(e);
+					alert(a);
+					alert("중복 확인에 실패했습니다");
+				}
+			});
+		});
+		
+		
 	});
 	
 
