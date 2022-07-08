@@ -68,19 +68,46 @@ public class FavoriteController {
 		return "/lesson06/favoriteList";
 	}
 	
-	// url 중복 확인
+	// url 중복 확인 -AJAX로 온 요청
+	
 	@ResponseBody
-	@GetMapping("/is_duplication")
+	@PostMapping("/is_duplication")
 	public Map<String, Boolean> isDuplication(
 			@RequestParam("url")String url){
 			
-			// db select  new_user테이블
-			boolean isDuplication = favoriteBO.existFavoriteByUrl(url);
-			
+			//결과를 map -> JSON string
 			Map<String, Boolean> result = new HashMap<>();
-			result.put("is_duplication", isDuplication);
-		
+			result.put("is_duplication", false);
+			
+			// db select  -> 중복 확인
+//			boolean isDuplication = favoriteBO.existFavoriteByUrl(url);
+			Favorite favorite = favoriteBO.getFavoriteByUrl(url);
+			if (favorite != null) {
+				// 중복일 때
+				result.put("is_duplication", true);
+			}
+			
+			//return map
 			return result;
 			
+	}
+	
+	//삭제 
+	// http://localhost/lesson06/delete
+	@PostMapping("/delete_favorite")
+	@ResponseBody
+	public Map<String, Object> deleteFavorite(
+			@RequestParam("id")int id) {
+		
+		int deleteRow = favoriteBO.deleteFavoriteById(id);
+		
+		Map<String, Object> map = new HashMap<>();
+		if(deleteRow > 0) {
+			map.put("result", "success");
+		} else {
+			map.put("result", "failure");
+		}
+		
+		return map;
 	}
 }

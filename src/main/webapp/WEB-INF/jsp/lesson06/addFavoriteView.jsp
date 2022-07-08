@@ -17,17 +17,22 @@
 	<div class=container>
 		<h1 >즐겨 찾기 추가하기</h1>
 		<div class="form-group">
-				<label for="name">제목</label> <input type="text" id="name"
-				class="form-control col-10" placeholder="제목을 입력해주세요">
+				<label for="name">제목</label> 
+				<input type="text" id="name" class="form-control col-10" placeholder="제목을 입력해주세요">
 		</div>
 		<div class="form-group">
-				<label for="url">주소</label> <input type="text" id="url"
-					class="form-control col-10" placeholder="주소를 입력해주세요">
+				<label for="url">주소</label> 
+			<div class="form-inline">
+						<input type="text" id="url" class="form-control col-9" placeholder="주소를 입력해주세요">
+						<button type="button" id="chkBtn" class="btn btn-info text-thite">중복확인</button>
+			</div> 
+					<samall id="duplicationText" class="text-danger d-none">중복된 주소 입니다.</samall>
+					<samall id="availableUrl" class="text-success d-none">저장 가능한 주소 입니다.</samall>
+			
 		</div>
-		<div class="my-20">
-			<button type="button" id="chkBtn" class="btn btn-info text-thite">중복확인</button>
-			<samall id="warningBox"></samall>
-		</div> 
+		
+			
+		
 		
 		<input type="button" id="addBtn" value="추가" class="btn col-10 btn-success text-white">
 	</div>
@@ -35,7 +40,6 @@
 <script>
 	$(document).ready(function(){
 		
-		let check = 0;
 		
 		$('#addBtn').on('click', function(){
 			let name = $('#name').val().trim();
@@ -54,11 +58,13 @@
 				alert("주소 형식이 잘못되었습니다.");
 				return;
 			}
-		
-			if($('warningBox').children().length == 0){
-				alert("서브밋 가능");
-			}else{
-				alert("서브밋 불가");
+			
+			// 주소 중복확인 체크
+			//'저장 가능한 URL입니다.' 문구가 숨겨져 있을때 alert을 띄운다.
+			// d-none이 있을 때
+			if($('#availableUrl').hasClass('d-none')){
+				alert("중복확인을 다시 해주세요.");
+				return;
 			}
 			
 			$.ajax({
@@ -83,31 +89,39 @@
 				}
 			});
 		});
-		//chkBtn 클릭시 
+		
+		//chkBtn (중복확인) 클릭시 
 		$("#chkBtn").on('click', function(){
 			
-			$("#warningBox").empty();
-			
+			alert("중복확인")
 			let url = $("#url").val().trim();
 			
 			
 			if(url == ""){
-				$("#warningBox").append('<span class="text-danger">주소를 입력해주세요</sapn>');
+				alert("주소를 입력해주세요.")
 				return;
 			}
 			
-			
+			//중복 확인
 			$.ajax({
 				//request
-				type : "GET"
-				,url : "/lesson06/is_duplication?url=" + url
-						
+				type : "POST"
+				,url : "/lesson06/is_duplication"
+				,data : {
+					"url" : url
+				}
 										
 				//response
 				,success : function(data){
 					console.log(data.is_duplication);
 					if(data.is_duplication){
-						$("#warningBox").append('<span class="text-danger">중복된 주소입니다..</span>');
+						// 중복일때
+						$("#duplicationText").removeClass('d-none');
+						$("#availableUrl").addClass('d-none');
+					}else{
+						$("#availableUrl").removeClass('d-none');
+						$("#duplicationText").addClass('d-none');
+						// 사용 가능
 					}
 				}
 				,error : function(e, a){
