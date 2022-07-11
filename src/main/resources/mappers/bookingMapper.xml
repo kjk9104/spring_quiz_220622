@@ -16,5 +16,13 @@
  		FROM
  			`booking`
  	</select>
+ 	
+ 	<delete id="delBookByPhoneNumber" parameterType="int">
+ 		DELETE
+		FROM
+			`booking`
+		WHERE
+			`id` = #{id}
+ 	</delete>
  
  </mapper>

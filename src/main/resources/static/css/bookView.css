@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+nav{
+	background-color: orange;
+	height: 40px;
+}
+.main{
+	width: 500px;
+}
+.btn{
+	width: 500px;
+}

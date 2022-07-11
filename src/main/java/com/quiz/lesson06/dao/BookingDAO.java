@@ -10,5 +10,7 @@ import com.quiz.lesson06.model.Booking;
 public interface BookingDAO {
 	
 	public List<Booking> selectBookingList();
+	
+	public int delBookByPhoneNumber(int id);
 
 }

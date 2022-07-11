@@ -1,0 +1,13 @@
+@charset "UTF-8";
+nav{
+	background-color: orange;
+	height: 40px;
+}
+.nav{
+	hight : 100%;
+}
+a:hover{
+	hight : 100%;
+	background-color:black;
+	text-decoration: none;
+}

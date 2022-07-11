@@ -14,16 +14,17 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="/css/bookingList.css">
 <title>예약 리스트</title>
 </head>
 <body>
 	<header>
-		<div  class="d-flex justify-content-center"><h1>통나무 펜션</h1></div>
-		<nav class="d-flex justify-content-around col-12 bg-warning">
-			<span class="text-light">펜션소개</span>
-			<span class="text-light">객실보기</span>
-			<span class="text-light">예약하기</span>
-			<span class="text-light">예약목록</span>
+		<div class="d-flex justify-content-center"><h1>통나무 펜션</h1></div>
+		<nav class="d-flex justify-content-around col-12 ">
+			<a href="/lesson06/check_booking" class="aTag align-self-center"><span class="text-light">펜션소개</span></a>
+			<a href="#" class="aTag align-self-center"><span class="text-light">객실보기</span></a>
+			<a href="/lesson06/book" class="aTag align-self-center"><span class="text-light">예약하기</span></a>
+			<a href="/lesson06/booking_list" class="aTag align-self-center"><span class="text-light">예약목록</span></a>
 		</nav>
 	</header>
 	<content>
@@ -55,19 +56,55 @@
 						<c:when test="${booking.state eq '확정'}">
 							<td class="text-success">${booking.state}</td>
 						</c:when>
+						<c:when test="${booking.state eq '확정'}">
+							<td class="text-danger">${booking.state}</td>
+						</c:when>
 					</c:choose>
-					<td><button type="button" class="btn btn-danger delBtn" data-booking-phoneNumber="${booking.phoneNumber}">삭제</button></td>
+					<td><button type="button" class="btn btn-danger delBtn" data-booking-id="${booking.id}">삭제</button></td>
 				</tr>
 			</tbody>
 			</c:forEach>
 		</table>
 	</content>
+	<footer>
+		<small> 제주특별자치도 제주시 애월읍<br>
+		사업자등록번호: 111-22-244222 / 농어촌민박사업자지정 / 대표:김통목<br>
+		Copylight 2025 tongnamu.All.right.reserved.
+		</small>
+	</footer>
 <script>
 $(document).ready(function(){
 	$(".delBtn").on("click", function(e){
-	 	let bookingPhoneNum = $(this).data('booking-phoneNumber');
+	 	let bookingId = $(this).data('booking-id');
 		
-	 	alert(bookingPhoneNum);
+	 	alert(bookingId);
+	 	 $.ajax({
+	 		 //reqeust1
+	 		 type:"DELETE"
+	 		 , url: "/lesson06/delete_booking"
+	 		 , data : { "id" : bookingId }
+			 //reqeust2
+			 
+// 			 type:"POST"
+// 			 ,url: "/lesson06/delete_booking1"
+// 			 ,data:{
+// 				 "id" : bookingId
+// 			 }
+		 	
+		 	 //response
+		 	 ,success : function(data){
+		 		 //{"result" :"success"}
+		 		 if(data.result == "success"){
+		 			alert("삭제 되었습니다.")
+		 			location.reload(true); // 새로고침
+		 		 } else{
+		 			 alert("삭제하는데 실패했습니다. 관리자에게 문의해주세요")
+		 		 }
+		 	 }
+		 	 ,error : function(e){
+		 		 alert("통신에 실패했습니다."+e);
+		 	 }
+		 });
 	});
 });
 

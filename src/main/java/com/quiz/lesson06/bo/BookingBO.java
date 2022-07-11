@@ -16,4 +16,8 @@ public class BookingBO {
 	public List<Booking> getBookingList() {
 		return bookingDAO.selectBookingList();
 	}
+	
+	public int delBookByPhoneNumber(int id) {
+		return bookingDAO.delBookByPhoneNumber(id);
+	}
 }
