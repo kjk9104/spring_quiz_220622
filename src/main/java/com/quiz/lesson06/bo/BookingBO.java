@@ -1,5 +1,6 @@
 package com.quiz.lesson06.bo;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,5 +20,17 @@ public class BookingBO {
 	
 	public int delBookByPhoneNumber(int id) {
 		return bookingDAO.delBookByPhoneNumber(id);
+	}
+	
+	public int addBooking(
+			String name 
+			,int headcount 
+			,int day 
+			,Date date
+			,String phoneNumber
+			) {
+		
+		int add = bookingDAO.insertBooking(name, headcount, day, date, phoneNumber);
+		return add;
 	}
 }

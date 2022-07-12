@@ -32,19 +32,19 @@
 		<div>
 			<img id="img1" alt="사진" src="/img/test06_banner1.jpg">
 		</div>
-		<div class="d-flex justify-content-around">
-			<div class="div1_3">
-				실시간 예약하기
+		<div class="constent d-flex justify-content-center">
+			<div class="div1_3 col-4 text-light">
+				<samp class="align-middle">실시간<br> 예약하기</samp>
 			</div>
-			<div id="div2">
-				<h3>예약 확인</h3>
-				<input type="text" id="name" class="form-control">
-				<input type="text" id="phoneNumber" class="form-control">
+			<div id="div2" class="col-4 text-light row align-items-center">
+				<h3>예약 확인</h3><br>
+				이름 : <input type="text" id="name" class="form-control col-3"><br>
+				전화번호 : <input type="text" id="phoneNumber" class="form-control col-3"><br>
 				<button class="btn btn-success">조회하기</button>
 			</div>
-			<div>
-				<div class="div1_3">예약문의:
-				010-0000-1111</div>
+			<div class="div1_3 col-4 text-light" >
+				<samp>예약문의:<br>
+				010-0000-1111</samp>
 			</div>
 		</div>
 	</content>
@@ -54,6 +54,21 @@
 		Copylight 2025 tongnamu.All.right.reserved.
 		</small>
 	</footer>
+	<script>
+	$(document).ready(function() {
+		
+			setInterval("changeImg()", 1000); 
+		
+	    
+		function changeImg(){
+			consle.log("이미지 변경"+i)
+			for (let i=1; i>4; i++){
+			$("#img1").attr('src', '/img/test06_banner'+i+'.jpg')
+			}
+		}
+	});
 	
+	
+	</script>
 </body>
 </html>

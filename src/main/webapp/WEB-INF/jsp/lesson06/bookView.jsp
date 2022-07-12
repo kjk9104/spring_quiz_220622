@@ -53,19 +53,6 @@
 	</footer>
 	 <script>
             $(document).ready(function() {
-            	$(".btn").on("click",function(){
-            		let name = $("#name").val().trim();
-            		let date = $("#date").val().trim();
-            		let day = $("#day").val().trim();
-            		let headcount = $("#headcount").val().trim();
-            		let phoneNumber = $("#phoneNumber").val().trim();
-            		
-        			$.ajax({
-        				type : "POST"
-        				,url : "/lesson06/book"
-        				,data
-        			})
-            	})
             	
                 // 모든 데이터피커에 적용
                 $.datepicker.setDefaults({
@@ -92,6 +79,40 @@
                 $('#endDate').datepicker({
                     minDate:0 
                 });
+            	
+            	
+            	$(".btn").on("click",function(){
+            		let name = $("#name").val().trim();
+            		let date = $("#date").val().trim();
+            		let day = $("#day").val().trim();
+            		let headcount = $("#headcount").val().trim();
+            		let phoneNumber = $("#phoneNumber").val().trim();
+            		
+        			$.ajax({
+        				type : "POST"
+        				,url : "/lesson06/booking"
+        				,data : { 
+        					"name" : name 
+        					,"date" : date 
+        					,"day" : day 
+        					,"headcount" : headcount 
+        					,"phoneNumber" : phoneNumber 
+        					}
+	        			 ,success : function(data){
+	    			 		 //{"result" :"success"}
+	    			 		 if(data.result == "success"){
+	    			 			location.reload(true); // 새로고침
+	    			 		 } else{
+	    			 			 alert("삭제하는데 실패했습니다. 관리자에게 문의해주세요")
+	    			 		 }
+	    			 	 }
+        				,error : function(e){
+        					 alert("통신에 실패했습니다."+e);
+        				}
+        			})
+            	})
+            	
+
             });
 
         </script>

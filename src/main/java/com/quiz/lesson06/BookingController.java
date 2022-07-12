@@ -1,5 +1,6 @@
 package com.quiz.lesson06;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -74,8 +75,30 @@ public class BookingController {
 	// http://localhost/lesson06/book
 		@RequestMapping("/book")
 		public String book() {
-			
 			return "/lesson06/bookView";
+		}
+		
+		// http://localhost/lesson06/booking
+		@ResponseBody
+		@PostMapping("/booking")
+		public Map<String, Object> booking(
+				@RequestParam("name") String name
+				,@RequestParam("headcount") int headcount
+				,@RequestParam("day") int day
+				,@RequestParam("date") Date date
+				,@RequestParam(value = "phoneNumber", required = false) String phoneNumber
+				) {
+			
+			int deleteRow = bookingBO.addBooking(name, headcount, day, date, phoneNumber);
+			Map<String, Object> map = new HashMap<>();
+			
+			if(deleteRow > 0) {
+				map.put("result", "success");
+			} else {
+				map.put("result", "failure");
+			}
+			
+			return map;
 		}
 		
 		// http://localhost/lesson06/check_booking
