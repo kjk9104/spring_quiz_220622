@@ -98,7 +98,7 @@
 						,"phoneNumber" : phoneNumber
 					}
 					,success : function(data){
-				 		 if(data != null){
+				 		 if(data.result == "success"){
 				 			 alert(
 				 				  "이름 : " + data.booking.name+"\n"
 				 				  +"날짜 : " + data.booking.date.substring(0, 10) +"\n"
@@ -108,7 +108,7 @@
 				 					 );
 				 		 }
 				 		 else{
-				 			 alert("이름과 번호를 확인해 주세요");
+				 			 alert("예약 내역이 없습니다");
 				 		 }
 				 		 
 				 	 }

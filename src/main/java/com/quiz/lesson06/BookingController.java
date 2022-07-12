@@ -118,11 +118,16 @@ public class BookingController {
 					
 					//name, phoneNumber 디비 조회
 					Booking booking = bookingBO.getBookingBynameAndPhoneNumber(name, phoneNumber);
-			
+					
 				
 					Map<String, Object> result = new HashMap<>();
-					result.put("result", "success");
-					result.put("booking", booking);
+					if(booking != null) {
+						result.put("result", "success");
+						result.put("booking", booking);
+					}else {
+						result.put("result", null);
+					}
+					
 					
 					return result;
 		}
