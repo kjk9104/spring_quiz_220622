@@ -14,11 +14,11 @@ a:hover{
 }
 .constent{
 	width:100%;
+	height: 250px;
 }
 
 .div1_3{
 	background-color:#B1520F;
-	height: 200px;
 	text-align: center;
 	
 }
@@ -27,6 +27,17 @@ a:hover{
 }
 #div2{
 	background-color: #CF6317;
-	text-align: center;
 }
+#div2>div{
+	width:500px;
+	padding-right:150px;
+	padding-top:10px;
+}
+#div2>div>div{
+	padding-top:10px;
+}
+#div2>h3{
+	padding-top:10px;
+}
+
 

@@ -22,5 +22,5 @@ public interface BookingDAO {
 			,@Param("date") Date date
 			,@Param("phoneNumber") String phoneNumber
 			);
-
+	public List<Booking> selectBookingListBynameAndPhoneNumber(@Param("name") String name, @Param("phoneNumber") String phoneNumber);
 }

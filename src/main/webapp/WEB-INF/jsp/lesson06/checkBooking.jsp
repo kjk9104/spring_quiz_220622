@@ -24,7 +24,7 @@
 		<nav class="d-flex justify-content-around col-12 ">
 			<a href="/lesson06/check_booking" class="aTag align-self-center"><span class="text-light">펜션소개</span></a>
 			<a href="#" class="aTag align-self-center"><span class="text-light">객실보기</span></a>
-			<a href="/lesson06/book" class="aTag align-self-center"><span class="text-light">예약하기</span></a>
+			<a href="/lesson06/addbook" class="aTag align-self-center"><span class="text-light">예약하기</span></a>
 			<a href="/lesson06/booking_list" class="aTag align-self-center"><span class="text-light">예약목록</span></a>
 		</nav>
 	</header>
@@ -36,11 +36,19 @@
 			<div class="div1_3 col-4 text-light">
 				<samp class="align-middle">실시간<br> 예약하기</samp>
 			</div>
-			<div id="div2" class="col-4 text-light row align-items-center">
-				<h3>예약 확인</h3><br>
-				이름 : <input type="text" id="name" class="form-control col-3"><br>
-				전화번호 : <input type="text" id="phoneNumber" class="form-control col-3"><br>
-				<button class="btn btn-success">조회하기</button>
+			<div id="div2" class="col-4 text-light">
+				<h3>예약 확인</h3>
+					<div>
+						<div class="d-flex justify-content-end">
+							이름 : <input type="text" id="name" class="form-control col-7">
+						</div>
+						<div class="d-flex justify-content-end">
+							전화번호 : <input type="text" id="phoneNumber" class="form-control col-7"><br>
+						</div>
+					</div>
+				<div class="d-flex justify-content-end">
+					<button class="btn btn-success">조회하기</button>
+				</div>
 			</div>
 			<div class="div1_3 col-4 text-light" >
 				<samp>예약문의:<br>
@@ -56,17 +64,62 @@
 	</footer>
 	<script>
 	$(document).ready(function() {
+			let count =1;
 		
-			setInterval("changeImg()", 1000); 
-		
-	    
-		function changeImg(){
-			consle.log("이미지 변경"+i)
-			for (let i=1; i>4; i++){
-			$("#img1").attr('src', '/img/test06_banner'+i+'.jpg')
-			}
-		}
+			setInterval(function (){
+				$("#img1").attr('src', '/img/test06_banner'+count+'.jpg');
+				count++;
+				if(count > 3){
+					count = 1;
+				}
+			}, 20000); 
+			$(".btn").on("click",function(){
+				let name = $('#name').val().trim();
+				let phoneNumber = $('#phoneNumber').val().trim();
+				
+				if(name ==""){
+					alert("이름을 입력해주세요");
+					return;
+				}
+				if(phoneNumber == ""){
+					alert("번호를 입력해 주세요");
+					return;
+				}
+				if(phoneNumber.startsWith("010") === false){
+					alert("010으로 시작하는 단어만 입력해주세요");
+					return;
+				}
+				
+				$.ajax({
+					type : "POST"
+					,url : "/lesson06/find_booking"
+					,data : {
+						"name" : name
+						,"phoneNumber" : phoneNumber
+					}
+					,success : function(data){
+				 		 if(data != null){
+				 			 alert(
+				 				  "이름 : " + data.booking.name+"\n"
+				 				  +"날짜 : " + data.booking.date.substring(0, 10) +"\n"
+				 				  +"일수 : " + data.booking.day+"\n"
+				 				  +"인원 : " + data.booking.headcount+"\n"
+				 				  +"상태 : " + data.booking.state+"\n"
+				 					 );
+				 		 }
+				 		 else{
+				 			 alert("이름과 번호를 확인해 주세요");
+				 		 }
+				 		 
+				 	 }
+					,error : function(e){
+						 alert("통신에 실패했습니다."+e);
+					}
+				});
+			});
 	});
+	
+	
 	
 	
 	</script>

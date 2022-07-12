@@ -33,4 +33,12 @@ public class BookingBO {
 		int add = bookingDAO.insertBooking(name, headcount, day, date, phoneNumber);
 		return add;
 	}
+	
+	public Booking getBookingBynameAndPhoneNumber(String name, String phoneNumber) {
+		List<Booking> bookingList = bookingDAO.selectBookingListBynameAndPhoneNumber(name, phoneNumber);
+		if(bookingList.isEmpty()) {
+			return null;
+		}
+		return bookingList.get(0);
+	}
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -72,10 +73,10 @@ public class BookingController {
 		
 	}
 	
-	// http://localhost/lesson06/book
-		@RequestMapping("/book")
+	// http://localhost/lesson06/addbook
+		@RequestMapping("/addbook")
 		public String book() {
-			return "/lesson06/bookView";
+			return "/lesson06/addBookView";
 		}
 		
 		// http://localhost/lesson06/booking
@@ -85,7 +86,7 @@ public class BookingController {
 				@RequestParam("name") String name
 				,@RequestParam("headcount") int headcount
 				,@RequestParam("day") int day
-				,@RequestParam("date") Date date
+				,@RequestParam("date") @DateTimeFormat(pattern="yyyy-MM-dd") Date date
 				,@RequestParam(value = "phoneNumber", required = false) String phoneNumber
 				) {
 			
@@ -104,8 +105,35 @@ public class BookingController {
 		// http://localhost/lesson06/check_booking
 		@RequestMapping("/check_booking")
 		public String check_book() {
-			
 			return "/lesson06/checkBooking";
 		}
+		
+		@ResponseBody
+		@PostMapping("/find_booking")
+		public Map<String, Object> find_booking(
+				@RequestParam("name") String name
+				,@RequestParam("phoneNumber") String phoneNumber
+				){
+//					bookingBO.getBookingBynameAndPhoneNumber(name, phoneNumber);
+					
+					//name, phoneNumber 디비 조회
+					Booking booking = bookingBO.getBookingBynameAndPhoneNumber(name, phoneNumber);
+			
+				
+					Map<String, Object> result = new HashMap<>();
+					result.put("result", "success");
+					result.put("booking", booking);
+					
+					return result;
+		}
+//		public Booking find_booking(
+//				@RequestParam("name") String name
+//				,@RequestParam("phoneNumber") String phoneNumber
+//				) {
+//			
+//			Booking result = bookingBO.getBookingBynameAndPhoneNumber(name, phoneNumber);
+//			
+//			return result;
+//		}
 	
 }

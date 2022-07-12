@@ -23,7 +23,7 @@
 		<nav class="d-flex justify-content-around col-12 ">
 			<a href="/lesson06/check_booking" class="aTag align-self-center"><span class="text-light">펜션소개</span></a>
 			<a href="#" class="aTag align-self-center"><span class="text-light">객실보기</span></a>
-			<a href="/lesson06/book" class="aTag align-self-center"><span class="text-light">예약하기</span></a>
+			<a href="/lesson06/addbook" class="aTag align-self-center"><span class="text-light">예약하기</span></a>
 			<a href="/lesson06/booking_list" class="aTag align-self-center"><span class="text-light">예약목록</span></a>
 		</nav>
 	</header>
