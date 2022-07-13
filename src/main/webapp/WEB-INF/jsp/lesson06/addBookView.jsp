@@ -88,6 +88,38 @@
             		let headcount = $("#headcount").val().trim();
             		let phoneNumber = $("#phoneNumber").val().trim();
             		
+            		if(name == ""){
+            			alert("이름을 입력해 주세요");
+            			return;
+            		}
+            		
+            		if(date == ""){
+            			alert("날짜을 입력해 주세요");
+            			return;
+            		}
+            		
+            		if(day == ""){
+            			alert("숙박일수를 입력해 주세요");
+            			return;
+            		}
+            		
+            		if(headcount == ""){
+            			alert("숙박인원을 입력해 주세요");
+            			return;
+            		}
+            		
+            		if(phoneNumber == ""){
+            			alert("전화번호을 입력해 주세요");
+            			return;
+            		}
+            		
+            		if(phoneNumber.startsWith("010") == false){
+            			alert("010으로 시작하게 입력 해주세요");
+            			return;
+            		}
+            		
+            		
+            		
         			$.ajax({
         				type : "POST"
         				,url : "/lesson06/booking"

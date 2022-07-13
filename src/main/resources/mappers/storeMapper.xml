@@ -10,4 +10,12 @@
  		FROM
  			`store`
  	</select>
+ 	<select id="getStoreById" resultType="String">
+ 		SELECT 
+ 			`name`
+ 		FROM
+ 			`store`
+ 		WHERE
+ 			`id`=#{id}
+ 	</select>
  </mapper>

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.quiz.lesson02.bo.StoreBO;
 
@@ -24,11 +25,5 @@ public class StoreController {
 		return "/lesson06/storeListView";
 	}
 	
-	// http://localhost/lesson06/quiz_review_list
-	@RequestMapping("quiz_review_list")
-	public String quiz_review_list() {
-		
-			
-		return "/lesson06/reviewListView";
-	}
+	
 }

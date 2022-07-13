@@ -10,4 +10,6 @@ import com.quiz.lesson02.model.Store;
 public interface StoreDAO {
 
 	public List<Store> selectStoreList();
+	
+	public String selectStoreById(int id);
 }

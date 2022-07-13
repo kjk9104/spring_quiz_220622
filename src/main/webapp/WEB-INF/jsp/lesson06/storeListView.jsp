@@ -18,16 +18,16 @@
 <link  rel="stylesheet" type="text/css"  href="/css/quiz06_1.css">
 </head>
 <body>
-	<header class="bg-info d-flex flex-wrap align-content-center col-10"">
+	<header class="bg-info d-flex flex-wrap align-content-center"">
 		<h3 class="text-white">배탈의 민족</h1>
 	</header>
 	<div class="content">
 			 <h1>우리 동네 가게</h1>
 			 <c:forEach var="store" items="${storeList}">
-				 <div class="border border-info col-10 d-flex flex-column justify-content-center col-10" >
-				 	<a href="quiz_review_list"><h3><Strong>${store.name}</Strong></h3>
-				 	<span>전화번호 : ${store.phoneNumber}</span><br>
-				 	<span>주소 : ${store.address}</span></a>
+				 <div class="border border-info d-flex flex-column justify-content-center" >
+				 	<a href="quiz_review_list?storeId=${store.id}"><h3><Strong>${store.name}</Strong></h3>
+				 	<samp>전화번호 : ${store.phoneNumber}</samp><br>
+				 	<samp>주소 : ${store.address}</samp></a>
 				 </div> 
 			 </c:forEach>
 	</div>
