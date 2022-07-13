@@ -14,9 +14,11 @@ import com.quiz.lesson06.model.NewReview;
 
 @Controller
 @RequestMapping("/lesson06")
+
 public class ReviewController {
 	@Autowired
 	private NewReviewBO newReviewBO;
+	@Autowired
 	private StoreBO storeBO;
 	
 	// http://localhost/lesson06/quiz_review_list

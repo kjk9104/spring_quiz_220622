@@ -22,7 +22,7 @@
 		<h3 class="text-white">배탈의 민족</h3>
 	</header>
 	<div class="content">
-			 <h1>${storeName}</h1>
+			 <h1>${storeName} - 리뷰</h1>
 			 <c:forEach var="review" items="${reviewList}">
 				 <div class="content-box border border-info d-flex flex-column justify-content-center" >
 				 	<strong>${review.userName}</strong>

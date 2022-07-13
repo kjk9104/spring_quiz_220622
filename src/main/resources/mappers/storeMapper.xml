@@ -10,7 +10,7 @@
  		FROM
  			`store`
  	</select>
- 	<select id="getStoreById" resultType="String">
+ 	<select id="selectStoreById" resultType="String">
  		SELECT 
  			`name`
  		FROM
